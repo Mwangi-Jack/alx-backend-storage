@@ -1,0 +1,16 @@
+db = connect("localhost:27017");
+
+print("MongoDB shell version v" + db.version());
+print("connecting to: mongodb://127.0.0.1:27017");
+print("MongoDB server version: " + db.serverBuildInfo().version);
+
+// List all databases
+databases = db.adminCommand('listDatabases').databases;
+
+databases.forEach(function(dbInfo) {
+    db = db.getSiblingDB(dbInfo.name); // Use getSiblingDB to avoid multiple connections
+    stats = db.stats();
+    // Calculate the storage size in GB
+    var storageSizeGB = (stats.storageSize / (1024 * 1024 * 1024)).toFixed(3);
+    print(dbInfo.name + "\t" + storageSizeGB + "GB");
+});
