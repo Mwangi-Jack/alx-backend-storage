@@ -1,16 +1,18 @@
-db = connect("localhost:27017");
+#!/usr/bin/env python3
 
-print("MongoDB shell version v" + db.version());
-print("connecting to: mongodb://127.0.0.1:27017");
-print("MongoDB server version: " + db.serverBuildInfo().version);
+from pymongo import MongoClient
 
-// List all databases
-databases = db.adminCommand('listDatabases').databases;
 
-databases.forEach(function(dbInfo) {
-    db = db.getSiblingDB(dbInfo.name); // Use getSiblingDB to avoid multiple connections
-    stats = db.stats();
-    // Calculate the storage size in GB
-    var storageSizeGB = (stats.storageSize / (1024 * 1024 * 1024)).toFixed(3);
-    print(dbInfo.name + "\t" + storageSizeGB + "GB");
-});
+def list_databases():
+    client = MongoClient('localhost', 27017)
+
+    databases = client.list_database_names()
+    print("Databases:")
+    for db_name in databases:
+        db = client[db_name]
+        stats = db.command("dbstats")
+        storage_size_gb = stats['storageSize'] / (1024 * 1024 * 1024)
+        print(f"{db_name:<10} {storage_size_gb:.3f}GB")
+
+if __name__ == "__main__":
+    list_databases()
