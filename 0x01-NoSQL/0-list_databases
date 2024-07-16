@@ -6,7 +6,6 @@ print("MongoDB shell version v" + db.version());
 print("connecting to: mongodb://127.0.0.1:27017");
 print("MongoDB server version: " + db.serverBuildInfo().version);
 
-// List all databases
 databases = db.adminCommand('listDatabases').databases;
 
 databases.forEach(function(dbInfo) {
