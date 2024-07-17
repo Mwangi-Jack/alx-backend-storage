@@ -1,14 +1,1 @@
-db = connect("localhost:27017");
-
-print("MongoDB shell version v" + db.version());
-print("connecting to: mongodb://127.0.0.1:27017");
-print("MongoDB server version: " + db.serverBuildInfo().version);
-
-databases = db.adminCommand('listDatabases').databases;
-
-databases.forEach(function(dbInfo) {
-    db = db.getSiblingDB(dbInfo.name);
-    stats = db.stats();
-    var storageSizeGB = (stats.storageSize / (1024 * 1024 * 1024)).toFixed(3);
-    print(dbInfo.name + "\t" + storageSizeGB + "GB");
-});
+show dbs in the current database;
