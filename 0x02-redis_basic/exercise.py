@@ -6,9 +6,16 @@ import redis
 
 
 class Cache:
-    """Cache class"""
+    """
+    Cache class defines two methods the initializaiton method
+    and the store method
+    """
 
     def __init__(self) -> None:
+        """
+        this method initializes the class with a private
+        variable '_redis' which holds the redis instance
+        """
         self._redis = redis.Redis()
         self._redis.flushdb()
 
