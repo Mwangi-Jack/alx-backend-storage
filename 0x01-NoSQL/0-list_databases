@@ -1,1 +1,3 @@
+// show databases
+
 show dbs in the current database;
