@@ -17,7 +17,7 @@ class Cache:
         this method initializes the class with a private
         variable '_redis' which holds the redis instance
         """
-        self._redis: redis.Redis = redis.Redis(host='localhost', port=6379, db=0)
+        self._redis = redis.Redis(host='localhost', port=6379, db=0)
         self._redis.flushdb()
 
     def store(self, data: Union[str, float, bytes, int]) -> str:
