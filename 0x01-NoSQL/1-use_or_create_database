@@ -1,6 +1,5 @@
 // create or use a database
 
-// Connect to MongoDB
 conn = new Mongo();
 db = conn.getDB("my_db");
 
