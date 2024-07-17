@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Cache class"""
+"""file: exercise.py -> defines the Cache class """
 
 import uuid
-import redis
 from typing import Union
+import redis
 
 
 class Cache:
