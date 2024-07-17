@@ -12,7 +12,7 @@ class Cache:
     and the store method
     """
 
-    def __init__(self)-> None:
+    def __init__(self):
         """
         this method initializes the class with a private
         variable '_redis' which holds the redis instance
