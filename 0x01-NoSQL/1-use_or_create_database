@@ -1,12 +1,8 @@
-const client = new Mongo();
-const db = client.getDB('my_db');
+// create or use database
 
-const dbList = client.getDBs().databases.map(db => db.name);
-if (dbList.includes('my_db')) {
-    print("Database 'my_db' already exists. Switching to it.");
-} else {
-    db.getCollection('my_collection').insertOne({ message: 'Initial document' });
-    print("Database 'my_db' created and selected.");
-}
+conn = new Mongo();
+db = conn.getDB("my_db");
 
-print("Using database: " + db.getName());
+db.getSiblingDB("my_db");
+
+print("switched to db my_db");
