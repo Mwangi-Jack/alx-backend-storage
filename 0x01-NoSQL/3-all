@@ -1,0 +1,4 @@
+// A script that lists all documents in the collection
+// The database name is passed as an option of mongo
+
+db.school.find()
