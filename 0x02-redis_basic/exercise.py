@@ -2,7 +2,8 @@
 """file: exercise.py -> defines the Cache class """
 
 import uuid
-from typing import Union
+from typing import Any, Callable, Optional, Union
+from click import Option
 import redis
 
 
@@ -30,3 +31,26 @@ class Cache:
         self._redis.set(key, data)
 
         return key
+
+    def get(self, key:str, fn: Optional[Callable[[bytes], Any]] = None) -> Any:
+        """
+        This function takes in a  string 'key' and an optional callable 'fn
+        """
+
+        data = self._redis.get(key)
+
+        if data is None:
+            return None
+
+        if fn:
+            return fn(data)
+
+        return data
+
+    def get_str(self, key: str) -> Optional[str]:
+        """Retrieves the data and decode it as UTF-8 string"""
+        return self.get(key, fn=lambda d: d.decode("uft-8"))
+
+    def get_int(self, key: str) -> Optional[int]:
+        """Retrieves the data and convert it to integer"""
+        return self.get(key, fn=int)
