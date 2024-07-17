@@ -8,24 +8,36 @@ Cache = __import__('exercise').Cache
 
 cache = Cache()
 
-data = b"hello"
-key = cache.store(data)
-print(key)
+"""Test 1"""
+# data = b"hello"
+# key = cache.store(data)
+# print(key)
 
-local_redis = redis.Redis()
-print(local_redis.get(key))
+# local_redis = redis.Redis()
+# print(local_redis.get(key))
 
 
-cache = Cache()
 
-TEST_CASES = {
-	b"foo": None,
-	123: int,
-	"bar": lambda d: d.decode("utf-8")
-}
+"""test 2"""
+# cache = Cache()
 
-for value, fn in TEST_CASES.items():
-	key = cache.store(value)
-	assert cache.get(key, fn=fn) == value
+# TEST_CASES = {
+# 	b"foo": None,
+# 	123: int,
+# 	"bar": lambda d: d.decode("utf-8")
+# }
 
-print("All test cases passed.")
+# for value, fn in TEST_CASES.items():
+# 	key = cache.store(value)
+# 	assert cache.get(key, fn=fn) == value
+
+# print("All test cases passed.")
+
+"""test 3"""
+
+cache.store(b"first")
+print(cache.get(cache.store.__qualname__))
+
+cache.store(b"second")
+cache.store(b"third")
+print(cache.get(cache.store.__qualname__))
