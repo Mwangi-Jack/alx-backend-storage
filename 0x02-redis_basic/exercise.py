@@ -32,7 +32,7 @@ class Cache:
 
         return key
 
-    def get(self, key:str, fn: Optional[Callable[[bytes], Any]] = None) -> Any:
+    def get(self, key: str, fn: Optional[Callable[[bytes], Any]] = None) -> Any:
         """
         This function takes in a  string 'key' and an optional callable 'fn
         """
