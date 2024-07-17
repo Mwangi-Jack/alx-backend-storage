@@ -2,19 +2,19 @@
 """file: exercise.py -> defines the Cache class """
 
 import uuid
+from functools import wraps
 from typing import Any, Callable, Optional, Union
 import redis
-from functools import wraps
 
 
-def count_calls(method: Callable[[], Callable]) -> Callable:
+def count_calls(method: Callable) -> Callable:
     """
     This function is a decorator that takes in  a single callable
     'method' and returns  a callable
     """
     @wraps(method)
     def wrapper(self, *args, **kwds):
-        key: str = method.__qualname__
+        key = method.__qualname__
 
         self._redis.incr(key)
 
