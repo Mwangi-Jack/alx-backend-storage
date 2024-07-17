@@ -20,7 +20,7 @@ class Cache:
         self._redis = redis.Redis(host='localhost', port=6379, db=0)
         self._redis.flushdb()
 
-    def store(self, data: Union[str, float, bytes, int]) -> str:
+    def store(self, data: Union[str, bytes, int, float]) -> str:
         """
         This method takes in a 'data' argument generates a random key
         ,stores the input data in Redis using the random keyand returns
